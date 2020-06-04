@@ -3,7 +3,7 @@ import os
 from selenium import webdriver
 from selenium.webdriver.firefox.service import Service as Chrome
 
-from pageObjects.Pages import login_page
+from test_project.pageObjects.Pages import login_page
 
 
 class TestLogin():

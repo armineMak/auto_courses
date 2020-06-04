@@ -1,12 +1,12 @@
 from selenium.webdriver.common.by import By
 
 
-class LoginPage():
+class LogoutPage():
     _username_input = {"by": By.ID, "value": "username"}
     _password_input = {"by": By.ID, "value": "password"}
     _submit_button = {"by": By.CSS_SELECTOR, "value": "button"}
     _success_message = {"by": By.CSS_SELECTOR, "value": ".flash.success"}
-    _failure_message = {"by": By.CSS_SELECTOR, "value": ".flash.error"}
+    _logout_button = {"by": By.CSS_SELECTOR, "value": ".button.secondary"}
 
     def __init__(self, driver):
         self.driver = driver
@@ -19,11 +19,9 @@ class LoginPage():
                                  self._password_input["value"]).send_keys(password)
         self.driver.find_element(self._submit_button["by"],
                                  self._submit_button["value"]).click()
+        self.driver.find_element(self._logout_button["by"],
+                                 self._logout_button["value"]).click()
 
     def success_message(self):
         return self.driver.find_element(
             self._success_message["by"], self._success_message["value"]).is_displayed()
-
-    def failure_message(self):
-        return self.driver.find_element(
-            self._failure_message["by"], self._failure_message["value"]).is_displayed()
