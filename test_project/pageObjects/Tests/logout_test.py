@@ -4,9 +4,10 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as Chrome
 
 from test_project.pageObjects.Pages import login_page
+from test_project.pageObjects.Pages import secure_area_page
 
 
-class TestLogin():
+class TestSecurePage():
     @pytest.fixture
     def login(self, request):
         _chromedriver = os.path.join(os.getcwd(), 'drivers', 'chromedriver')
@@ -25,16 +26,6 @@ class TestLogin():
 
     def test_valid(self, login):
         login.with_("tomsmith", "SuperSecretPassword!")
-        assert login.success_message_displayed()
+        assert login.success_message()
 
-    def test_invalid_username(self, login):
-        login.with_("toms", "SuperSecretPassword!")
-        assert login.failure_message_displayed()
 
-    # def test_invalid_password(self, login):
-    #     login.with_("tomsmith", "!%^%$JK")
-    #     assert (login.failure_message())
-
-    # def test_logout(self, login):
-    #     login.with_()
-    #     assert login.success_message()
