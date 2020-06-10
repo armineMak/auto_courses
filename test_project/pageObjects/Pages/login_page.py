@@ -14,8 +14,6 @@ class LoginPage(BasePage):
         self._visit("http://the-internet.herokuapp.com/login")
 
     def with_(self, username, password):
-        self._type(self._username_input, username)
-        self._type(self._password_input, password)
         self._click(self._submit_button)
 
     def success_message_displayed(self):
