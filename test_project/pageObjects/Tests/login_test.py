@@ -1,40 +1,28 @@
-import pytest
-import os
+import unittest
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service as Chrome
 
-from test_project.pageObjects.Pages import login_page
+from test_project.pageObjects.Pages.main_page import MainPage
+from test_project.pageObjects.Pages.login_page import LoginPage
+from test_project.pageObjects.Pages.secure_area_page import SecurePage
 
 
-class TestLogin():
-    @pytest.fixture
-    def login(self, request):
-        _chromedriver = os.path.join(os.getcwd(), 'drivers', 'chromedriver')
-        if os.path.isfile(_chromedriver):
-            _service = Chrome(executable_path=_chromedriver)
-            driver_ = webdriver.Chrome(service=_service)
+class TestLogin(unittest.TestCase):
+    def setUp(self):
+        self.driver = webdriver.Chrome()
+        self.driver.get("http://the-internet.herokuapp.com/")
 
-        else:
-            driver_ = webdriver.Chrome()
+    def tearDown(self):
+        self.driver.quit()
 
-        def quit():
-            driver_.quit()
+    def test_auth_flow(self):
+        main_page = MainPage(self.driver)
+        login_page = LoginPage(self.driver)
+        secure_area = SecurePage(self.driver)
+        logout_page = LoginPage(self.driver)
 
-        request.addfinalizer(quit)
-        return login_page.LoginPage(driver_)
+        main_page.go_login()
+        login_page.with_("tomsmith", "SuperSecretPassword!")
+        secure_area.button_with_()
+        assert login_page.success_message_displayed()
 
-    def test_valid(self, login):
-        login.with_("tomsmith", "SuperSecretPassword!")
-        assert login.success_message_displayed()
 
-    def test_invalid_username(self, login):
-        login.with_("toms", "SuperSecretPassword!")
-        assert login.failure_message_displayed()
-
-    # def test_invalid_password(self, login):
-    #     login.with_("tomsmith", "!%^%$JK")
-    #     assert (login.failure_message())
-
-    # def test_logout(self, login):
-    #     login.with_()
-    #     assert login.success_message()

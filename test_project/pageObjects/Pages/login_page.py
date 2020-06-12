@@ -3,6 +3,7 @@ from test_project.pageObjects.Pages.base_page import BasePage
 
 
 class LoginPage(BasePage):
+    _login_form = {"by": By.ID, "value": "login"}
     _username_input = {"by": By.ID, "value": "username"}
     _password_input = {"by": By.ID, "value": "password"}
     _submit_button = {"by": By.CSS_SELECTOR, "value": "button"}
@@ -11,7 +12,6 @@ class LoginPage(BasePage):
 
     def __init__(self, driver):
         self.driver = driver
-        self._visit("http://the-internet.herokuapp.com/login")
 
     def with_(self, username, password):
         self._type(self._username_input, username)
@@ -19,7 +19,7 @@ class LoginPage(BasePage):
         self._click(self._submit_button)
 
     def success_message_displayed(self):
-        return self._is_displayed(self._success_message, timeout=0)
+        return self._is_displayed(self._success_message)
 
     def failure_message_displayed(self):
-        return self._is_displayed(self._failure_message, timeout=2)
+        return self._is_displayed(self._failure_message)
