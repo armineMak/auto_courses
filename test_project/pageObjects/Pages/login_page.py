@@ -3,7 +3,6 @@ from test_project.pageObjects.Pages.base_page import BasePage
 
 
 class LoginPage(BasePage):
-    _login_form = {"by": By.ID, "value": "login"}
     _username_input = {"by": By.ID, "value": "username"}
     _password_input = {"by": By.ID, "value": "password"}
     _submit_button = {"by": By.CSS_SELECTOR, "value": "button"}

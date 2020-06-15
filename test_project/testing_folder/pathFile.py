@@ -14,7 +14,3 @@ login = driver.find_element_by_css_selector("#login > button").click()
 logout = driver.find_element_by_css_selector("#content > div > a").click()
 
 driver.quit()
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
