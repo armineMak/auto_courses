@@ -9,6 +9,7 @@ from test_project.pageObjects.Pages.secure_area_page import SecurePage
 class TestLogin(unittest.TestCase):
     def setUp(self):
         self.driver = webdriver.Chrome()
+        self.driver.maximize_window()
         self.driver.get("http://the-internet.herokuapp.com/")
 
     def tearDown(self):

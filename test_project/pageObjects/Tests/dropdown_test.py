@@ -1,7 +1,7 @@
 import unittest
 from selenium import webdriver
 from test_project.pageObjects.Pages.main_page import MainPage
-from test_project.pageObjects.Pages.js_alerts_page import JSAlerts
+from test_project.pageObjects.Pages.dropdown_page import DropdownList
 
 
 class AlertsAssert(unittest.TestCase):
@@ -13,11 +13,11 @@ class AlertsAssert(unittest.TestCase):
     def tearDown(self):
         self.driver.quit()
 
-    def test_js_alert(self):
+    def test_drop_down_list(self):
         main_page = MainPage(self.driver)
-        main_page.go_alerts_page()
+        main_page.go_dropdown_page()
 
-        alerts_page = JSAlerts(self.driver)
-        alerts_page.button1_alert_()
+        drop_down_page = DropdownList(self.driver)
+        drop_down_page.drop_down_list_()
+        assert drop_down_page.option_text()
 
-        assert alerts_page.alert_message()

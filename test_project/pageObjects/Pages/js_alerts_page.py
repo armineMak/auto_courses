@@ -11,6 +11,8 @@ class JSAlerts(BasePage):
 
     def button1_alert_(self):
         self._click(self._js_alert_button1)
+        js_alert = self.driver.switch_to.alert
+        js_alert.accept()
 
     def alert_message(self):
         return self._is_displayed(self._result_text, timeout=3)

@@ -5,6 +5,8 @@ from test_project.pageObjects.Pages.base_page import BasePage
 class MainPage(BasePage):
     _login_link = {"by": By.LINK_TEXT, "value": "Form Authentication"}
     _alert_link = {"by": By.LINK_TEXT, "value": "JavaScript Alerts"}
+    _drop_down_link = {"by": By.LINK_TEXT, "value": "Dropdown"}
+
 
     def __init__(self, driver):
         self.driver = driver
@@ -14,3 +16,6 @@ class MainPage(BasePage):
 
     def go_alerts_page(self):
         self._click(self._alert_link)
+
+    def go_dropdown_page(self):
+        self._click(self._drop_down_link)
