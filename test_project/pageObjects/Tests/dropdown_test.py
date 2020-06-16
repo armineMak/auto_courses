@@ -19,5 +19,6 @@ class AlertsAssert(unittest.TestCase):
 
         drop_down_page = DropdownList(self.driver)
         drop_down_page.drop_down_list_()
-        assert drop_down_page.option_text()
+        drop_down_page.click_on_option_()
+        assert drop_down_page.option_text_()
 
