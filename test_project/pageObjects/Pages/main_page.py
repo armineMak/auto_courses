@@ -1,12 +1,12 @@
 from selenium.webdriver.common.by import By
 from test_project.pageObjects.Pages.base_page import BasePage
+from test_project.pageObjects.Locators import MainPageLinks
 
 
 class MainPage(BasePage):
-    _login_link = {"by": By.LINK_TEXT, "value": "Form Authentication"}
-    _alert_link = {"by": By.LINK_TEXT, "value": "JavaScript Alerts"}
-    _drop_down_link = {"by": By.LINK_TEXT, "value": "Dropdown"}
-
+    _login_link = {"by": By.LINK_TEXT, "value": MainPageLinks.link_for_homepage}
+    _alert_link = {"by": By.LINK_TEXT, "value": MainPageLinks.link_for_alerts}
+    _drop_down_link = {"by": By.LINK_TEXT, "value": MainPageLinks.link_for_dropdown}
 
     def __init__(self, driver):
         self.driver = driver

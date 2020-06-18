@@ -22,7 +22,7 @@ class TestLogin(unittest.TestCase):
         logout_page = LoginPage(self.driver)
 
         main_page.go_login()
-        login_page.with_("tomsmith", "SuperSecretPassword!")
+        login_page.login_fields_("tomsmith", "SuperSecretPassword!")
         secure_area.button_with_()
         assert login_page.success_message_displayed()
 

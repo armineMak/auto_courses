@@ -1,10 +1,11 @@
 from selenium.webdriver.common.by import By
 from test_project.pageObjects.Pages.base_page import BasePage
+from test_project.pageObjects.Locators import PageDropDown
 
 
 class DropdownList(BasePage):
-    _select_box = {"by": By.ID, "value": "dropdown"}
-    _select_option = {"by": By.XPATH, "value": '//*[@id="dropdown"]/option[2]'}
+    _select_box = {"by": By.ID, "value": PageDropDown.drop_down}
+    _select_option = {"by": By.XPATH, "value": PageDropDown.drop_down_option_text}
 
     def __init__(self, driver):
         self.driver = driver
